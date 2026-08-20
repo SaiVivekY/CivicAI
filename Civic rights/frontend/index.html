@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="CivicAI - AI-powered civic and legal rights assistant for Indian citizens. Translate complex laws and government procedures into simple, actionable steps." />
+  <title>CivicAI — AI-Powered Civic & Legal Rights Assistant</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- =================================================================
+       1. NAVBAR
+       ================================================================= -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main Navigation">
+      <a href="#" class="brand-logo" aria-label="CivicAI Homepage">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        </div>
+        <span class="brand-text">Civic<span class="brand-accent">AI</span></span>
+        <span class="country-pill">
+          <span class="flag-dot" aria-hidden="true"></span>
+          India
+        </span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg class="menu-icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+        <svg class="menu-icon-close hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="nav-links-group" id="nav-links-menu">
+        <ul class="nav-links">
+          <li><a href="#how-it-works" class="nav-link">How it works</a></li>
+          <li><a href="#categories" class="nav-link">Rights & Categories</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#sources" class="nav-link">Sources</a></li>
+        </ul>
+        <a href="#problem-input-section" class="btn btn-primary btn-sm nav-cta">Get Started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =================================================================
+         2. HERO SECTION
+         ================================================================= -->
+    <section class="hero-section" id="problem-input-section">
+      <div class="container hero-container">
+
+        <!-- Hero Badge -->
+        <div class="hero-badge">
+          <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          <span>AI-Powered Citizen Legal & Civic Empowerment</span>
+        </div>
+
+        <!-- Headings -->
+        <h1 class="hero-title">
+          Understand Your Rights.<br />
+          <span class="gradient-text">Know What To Do.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Describe your civic or legal problem in simple language. CivicAI helps translate complex government
+          information into clear, actionable steps.
+        </p>
+
+        <!-- Problem Input Card -->
+        <div class="query-card">
+          <div class="query-card-header">
+            <label for="problem-input" class="query-label">
+              <svg class="query-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Describe your problem
+            </label>
+            <div class="query-meta-badges">
+              <span class="lang-hint">Supports English, Hindi, &amp; Hinglish</span>
+            </div>
+          </div>
+
+          <div class="textarea-wrapper">
+            <textarea id="problem-input" class="problem-textarea" rows="4" maxlength="1500"
+              placeholder="e.g. My landlord has not returned my security deposit of ₹45,000 even though I vacated 2 months ago and left the apartment in good condition..."
+              aria-describedby="textarea-char-count"></textarea>
+
+            <div class="textarea-footer">
+              <span class="char-count" id="textarea-char-count">0 / 1500 characters</span>
+              <button type="button" class="btn-clear hidden" id="btn-clear-input" aria-label="Clear entered text">
+                Clear
+              </button>
+            </div>
+          </div>
+
+
+          <!-- Sample Quick Prompts 
+          <div class="sample-prompts-wrapper">
+            <span class="sample-prompts-label">Try quick examples:</span>
+            <div class="sample-chips-list">
+              <button type="button" class="sample-chip" data-sample="tenant">
+                <span class="chip-emoji">🏠</span> Landlord withholding security deposit
+              </button>
+              <button type="button" class="sample-chip" data-sample="consumer">
+                <span class="chip-emoji">📱</span> E-commerce warranty refund denied
+              </button>
+              <button type="button" class="sample-chip" data-sample="rti">
+                <span class="chip-emoji">📄</span> No RTI reply after 30 days
+              </button>
+              <button type="button" class="sample-chip" data-sample="scheme">
+                <span class="chip-emoji">🏥</span> Ayushman Bharat / Scheme enrollment
+              </button>
+              <button type="button" class="sample-chip" data-sample="civic">
+                <span class="chip-emoji">🏗️</span> Unresolved municipal water / road issue
+              </button>
+            </div>
+          </div> -->
+
+          <!-- Action Button & Trust note -->
+          <div class="query-actions">
+            <button type="button" class="btn btn-primary btn-lg" id="btn-get-guidance">
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </span>
+              <span class="btn-text">Get Guidance</span>
+            </button>
+            <div class="trust-indicator">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>100% Free &amp; Private. Informational citizen aid.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         5. RESULTS SECTION (Hidden by default, shown on Guidance request)
+         ================================================================= -->
+    <section class="results-section hidden" id="results-container" aria-live="polite">
+      <div class="container">
+
+        <!-- Loading State Skeleton/Indicator -->
+        <div class="loading-state hidden" id="loading-state">
+          <div class="loading-spinner-ring"></div>
+          <h3 class="loading-title">Analyzing Your Problem...</h3>
+          <p class="loading-subtitle" id="loading-step-text">Checking relevant Indian legal provisions, portals, and
+            citizen remedies...</p>
+          <div class="loading-progress-bar">
+            <div class="loading-progress-fill" id="loading-progress-fill"></div>
+          </div>
+        </div>
+
+        <!-- Result Content Container (Populated dynamically) -->
+        <div class="results-card" id="results-content">
+
+          <!-- Header Banner -->
+          <div class="results-header">
+            <div class="results-header-info">
+              <div class="results-badge-row">
+                <span class="category-badge" id="res-category-badge">Tenant Rights</span>
+                <span class="jurisdiction-badge" id="res-jurisdiction-badge">Indian Legal Framework</span>
+              </div>
+              <h2 class="results-main-title" id="res-title">Guidance &amp; Action Plan</h2>
+              <p class="results-summary-text" id="res-summary-intro">Here is the breakdown of your rights, legal
+                remedies, and official recourse channels in India.</p>
+            </div>
+
+            <div class="results-header-actions">
+              <button type="button" class="btn btn-outline btn-sm" id="btn-print-results" title="Print or save as PDF">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Print / Save
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 1: Understanding your situation -->
+          <div class="result-block" id="block-understanding">
+            <div class="result-block-header">
+              <div class="block-icon-box blue-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+              </div>
+              <div>
+                <h3 class="result-block-title">Understanding Your Situation</h3>
+                <p class="result-block-subtitle">Legal context and citizen rights under Indian law</p>
+              </div>
+            </div>
+            <div class="result-block-body" id="res-understanding-content">
+              <!-- Injected by script.js -->
+            </div>
+          </div>
+
+          <!-- Section 2: What you can do (Step-by-step Action Plan) -->
+          <div class="result-block" id="block-actions">
+            <div class="result-block-header">
+              <div class="block-icon-box emerald-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 11 12 14 22 4"></polyline>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="result-block-title">What You Can Do (Action Plan)</h3>
+                <p class="result-block-subtitle">Follow these sequential, legally-sound steps to resolve your issue</p>
+              </div>
+            </div>
+            <div class="result-block-body">
+              <div class="timeline-steps" id="res-steps-content">
+                <!-- Injected by script.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Documents you may need -->
+          <div class="result-block" id="block-documents">
+            <div class="result-block-header">
+              <div class="block-icon-box purple-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="result-block-title">Documents You May Need</h3>
+                <p class="result-block-subtitle">Prepare these evidences and papers before initiating formal proceedings
+                </p>
+              </div>
+            </div>
+            <div class="result-block-body">
+              <ul class="documents-checklist" id="res-docs-content">
+                <!-- Injected by script.js -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Section 4: Relevant sources & official links -->
+          <div class="result-block" id="block-sources">
+            <div class="result-block-header">
+              <div class="block-icon-box amber-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="result-block-title">Relevant Sources &amp; Official Portals</h3>
+                <p class="result-block-subtitle">Authorized government helplines, statutes, and dispute filing portals
+                </p>
+              </div>
+            </div>
+            <div class="result-block-body">
+              <div class="sources-grid" id="res-sources-content">
+                <!-- Injected by script.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Generate Draft Action Callout -->
+          <div class="draft-callout-card" id="draft-callout">
+            <div class="draft-callout-content">
+              <div class="draft-callout-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="draft-callout-title">Need a Formal Notice or Application?</h3>
+                <p class="draft-callout-text">Generate a tailored legal notice, RTI application, or formal consumer
+                  grievance draft customized with your details.</p>
+              </div>
+            </div>
+            <button type="button" class="btn btn-accent btn-lg" id="btn-generate-draft">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              Generate Draft
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         3. CATEGORY CARDS
+         ================================================================= -->
+    <section class="categories-section" id="categories">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge">Key Focus Areas</div>
+          <h2 class="section-title">Civic &amp; Legal Domains</h2>
+          <p class="section-subtitle">
+            CivicAI is trained across major citizen-facing statutes and administrative frameworks in India.
+          </p>
+        </div>
+
+        <div class="categories-grid">
+
+          <!-- Card 1: RTI & Government Info -->
+          <article class="category-card" data-category="rti" tabindex="0" role="button"
+            aria-label="Explore RTI and Government Information">
+            <div class="card-icon-wrapper rti-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                <line x1="9" y1="7" x2="15" y2="7"></line>
+                <line x1="9" y1="11" x2="13" y2="11"></line>
+              </svg>
+            </div>
+            <h3 class="category-title">RTI &amp; Government Information</h3>
+            <p class="category-desc">
+              Understand the Right to Information Act 2005. File requests to public authorities, track mandatory 30-day
+              deadlines, and draft First Appeals for delayed or rejected applications.
+            </p>
+            <div class="card-footer">
+              <span class="card-link-text">Try RTI Query &rarr;</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Consumer Rights -->
+          <article class="category-card" data-category="consumer" tabindex="0" role="button"
+            aria-label="Explore Consumer Rights">
+            <div class="card-icon-wrapper consumer-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </div>
+            <h3 class="category-title">Consumer Rights</h3>
+            <p class="category-desc">
+              Protected under Consumer Protection Act 2019. Get recourse for defective goods, denied warranty,
+              e-commerce return refusals, fraudulent billing, and NCH / e-Daakhil complaints.
+            </p>
+            <div class="card-footer">
+              <span class="card-link-text">Try Consumer Query &rarr;</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Tenant Rights -->
+          <article class="category-card" data-category="tenant" tabindex="0" role="button"
+            aria-label="Explore Tenant Rights">
+            <div class="card-icon-wrapper tenant-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <h3 class="category-title">Tenant Rights</h3>
+            <p class="category-desc">
+              Navigate Model Tenancy provisions and Rent Control Acts. Resolve security deposit withholdings, arbitrary
+              rent hikes, unlawful eviction threats, and landlord maintenance disputes.
+            </p>
+            <div class="card-footer">
+              <span class="card-link-text">Try Tenant Query &rarr;</span>
+            </div>
+          </article>
+
+          <!-- Card 4: Government Schemes -->
+          <article class="category-card" data-category="scheme" tabindex="0" role="button"
+            aria-label="Explore Government Schemes">
+            <div class="card-icon-wrapper scheme-bg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20"></path>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3 class="category-title">Government Schemes</h3>
+            <p class="category-desc">
+              Identify central and state welfare programs (e.g. PM-KISAN, Ayushman Bharat, PMAY, scholarships). Check
+              eligibility criteria, required certificates, and application steps.
+            </p>
+            <div class="card-footer">
+              <span class="card-link-text">Try Scheme Query &rarr;</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         4. HOW IT WORKS
+         ================================================================= -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <div class="section-badge">Simple 3-Step Process</div>
+          <h2 class="section-title">How CivicAI Works</h2>
+          <p class="section-subtitle">
+            Democratizing legal literacy with AI that turns bureaucratic confusion into structured action.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-number-badge">1</div>
+            <div class="step-icon-container">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="step-title">Tell Us Your Problem</h3>
+            <p class="step-desc">
+              Type your issue in plain everyday words. No legal jargon or section numbers needed. Write in English,
+              Hindi, or Hinglish.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-number-badge">2</div>
+            <div class="step-icon-container">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="step-title">AI Finds Relevant Information</h3>
+            <p class="step-desc">
+              CivicAI analyzes your situation against Indian statutes, official citizen charters, gazette rules, and
+              designated government escalation routes.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-number-badge">3</div>
+            <div class="step-icon-container">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <path d="m9 15 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="step-title">Get a Clear Action Plan</h3>
+            <p class="step-desc">
+              Receive a step-by-step roadmap with exact portal links, helpline numbers, required document checklists,
+              and ready-to-use formal drafts.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         ABOUT SECTION
+         ================================================================= -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text-col">
+            <div class="section-badge">Our Mission</div>
+            <h2 class="section-title">Bridging the Legal Literacy Gap for Every Citizen</h2>
+            <p class="about-lead">
+              In India, millions of citizens face routine civic grievances—unrefunded security deposits, unanswered RTI
+              queries, fraudulent billing, or municipal apathy—without knowing their legal rights or procedural
+              remedies.
+            </p>
+            <p class="about-body">
+              CivicAI was created as a civic-tech initiative to empower citizens with immediate, clear, and actionable
+              intelligence. By parsing official statutes and grievance redressal mechanisms, we translate intimidating
+              administrative bureaucracy into straightforward checklists and actionable documents.
+            </p>
+            <div class="about-features-list">
+              <div class="feature-item">
+                <div class="feature-bullet">✓</div>
+                <span><strong>Democratized Knowledge:</strong> No expensive consultations for basic procedural
+                  rights.</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-bullet">✓</div>
+                <span><strong>Multi-jurisdictional:</strong> Covers Central Acts, State Rent Authorities &amp; Municipal
+                  bodies.</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-bullet">✓</div>
+                <span><strong>Actionable Drafts:</strong> Generates ready-to-send notices and RTI applications.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card-col">
+            <div class="stat-highlight-card">
+              <div class="stat-item">
+                <span class="stat-num">1.4B+</span>
+                <span class="stat-label">Citizens targeted for legal empowerment</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <span class="stat-num">4+</span>
+                <span class="stat-label">Core citizen redressal domains</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <span class="stat-num">&lt; 30s</span>
+                <span class="stat-label">Average time to generate step-by-step guidance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         SOURCES & INTEGRITY SECTION
+         ================================================================= -->
+    <section class="sources-section" id="sources">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge">Verified Information</div>
+          <h2 class="section-title">Authoritative Government Sources</h2>
+          <p class="section-subtitle">
+            All recommendations reference official Indian legislative repositories and official digital grievance
+            portals.
+          </p>
+        </div>
+
+        <div class="sources-list-grid">
+          <a href="https://rtionline.gov.in" target="_blank" rel="noopener noreferrer" class="source-link-card">
+            <div class="source-link-content">
+              <h4 class="source-title">RTI Online Portal</h4>
+              <p class="source-domain">rtionline.gov.in</p>
+              <p class="source-desc">Department of Personnel and Training (DoPT) for online RTI applications and first
+                appeals.</p>
+            </div>
+            <span class="external-icon">&nearr;</span>
+          </a>
+
+          <a href="https://consumerhelpline.gov.in" target="_blank" rel="noopener noreferrer" class="source-link-card">
+            <div class="source-link-content">
+              <h4 class="source-title">National Consumer Helpline (NCH)</h4>
+              <p class="source-domain">consumerhelpline.gov.in</p>
+              <p class="source-desc">Ministry of Consumer Affairs portal &amp; Helpline (Toll Free: 1915) for consumer
+                grievances.</p>
+            </div>
+            <span class="external-icon">&nearr;</span>
+          </a>
+
+          <a href="https://edaakhil.nic.in" target="_blank" rel="noopener noreferrer" class="source-link-card">
+            <div class="source-link-content">
+              <h4 class="source-title">e-Daakhil Portal</h4>
+              <p class="source-domain">edaakhil.nic.in</p>
+              <p class="source-desc">Online consumer dispute filing platform under National Consumer Dispute Redressal
+                Commission.</p>
+            </div>
+            <span class="external-icon">&nearr;</span>
+          </a>
+
+          <a href="https://www.indiacode.nic.in" target="_blank" rel="noopener noreferrer" class="source-link-card">
+            <div class="source-link-content">
+              <h4 class="source-title">India Code Digital Repository</h4>
+              <p class="source-domain">indiacode.nic.in</p>
+              <p class="source-desc">Official legislative database of Central &amp; State Acts maintained by Legislative
+                Department.</p>
+            </div>
+            <span class="external-icon">&nearr;</span>
+          </a>
+
+          <a href="https://nalsa.gov.in" target="_blank" rel="noopener noreferrer" class="source-link-card">
+            <div class="source-link-content">
+              <h4 class="source-title">National Legal Services Authority (NALSA)</h4>
+              <p class="source-domain">nalsa.gov.in</p>
+              <p class="source-desc">Free legal services and Lok Adalat dispute resolution for eligible citizens under
+                LSA Act 1987.</p>
+            </div>
+            <span class="external-icon">&nearr;</span>
+          </a>
+
+          <a href="https://myscheme.gov.in" target="_blank" rel="noopener noreferrer" class="source-link-card">
+            <div class="source-link-content">
+              <h4 class="source-title">myScheme Portal</h4>
+              <p class="source-domain">myscheme.gov.in</p>
+              <p class="source-desc">National platform providing one-stop search and discovery of government welfare
+                schemes.</p>
+            </div>
+            <span class="external-icon">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =================================================================
+       MODAL: DRAFT GENERATOR
+       ================================================================= -->
+  <div class="modal-overlay hidden" id="draft-modal" role="dialog" aria-modal="true"
+    aria-labelledby="modal-draft-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="modal-badge" id="modal-doc-type">Formal Legal Notice Draft</div>
+          <h3 class="modal-title" id="modal-draft-title">Generated Application / Notice Draft</h3>
+        </div>
+        <button type="button" class="btn-close-modal" id="btn-close-modal" aria-label="Close modal">
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-instruction">
+          Review the customized draft below. You can fill in the bracketed details <code>[LIKE THIS]</code> and copy or
+          download it.
+        </p>
+
+        <div class="draft-editor-box">
+          <textarea id="draft-text-content" class="draft-textarea" rows="15" spellcheck="false"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-footer-left">
+          <span class="copy-status-msg" id="copy-status-msg"></span>
+        </div>
+        <div class="modal-footer-actions">
+          <button type="button" class="btn btn-outline btn-sm" id="btn-copy-draft">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy to Clipboard
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-download-draft">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download as .txt
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =================================================================
+       6. FOOTER
+       ================================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo footer-logo">
+            <div class="logo-icon-wrapper">
+              <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+            <span class="brand-text">Civic<span class="brand-accent">AI</span></span>
+          </div>
+          <p class="footer-tagline">CivicAI — AI for Civic &amp; Legal Empowerment</p>
+        </div>
+
+        <div class="footer-nav">
+          <ul class="footer-links">
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#about">About Project</a></li>
+            <li><a href="#sources">Official Sources</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-disclaimer-box">
+        <p class="disclaimer-title">Legal Disclaimer</p>
+        <p class="disclaimer-text">
+          CivicAI provides informational guidance and is not a substitute for professional legal advice.
+          CivicAI is an educational and civic-technology assistance tool. While we strive to maintain accurate
+          references to statutory acts and grievance procedures, users should consult certified legal practitioners or
+          official authorities for binding legal representation.
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 CivicAI Project. Developed for College Civic-Tech Hackathon.</p>
+        <p class="footer-subtext">Designed for Indian Citizen Empowerment • Open Civic Standards</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>
